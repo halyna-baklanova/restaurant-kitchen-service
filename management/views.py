@@ -1,8 +1,9 @@
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
-from wheel.cli.convert import convert
+from django.views import generic
 
-from management.models import Dish, Cook
+
+from management.models import Dish, Cook, DishType
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -13,3 +14,30 @@ def index(request: HttpRequest) -> HttpResponse:
         "num_cooks": num_cooks,
     }
     return render(request, "management/index.html", context=context)
+
+
+class CookListView(generic.ListView):
+    model = Cook
+
+
+class CookDetailView(generic.DetailView):
+    model = Cook
+
+
+class DishTypeListView(generic.ListView):
+    model = DishType
+    template_name = "management/dish_type_list.html"
+    context_object_name = "dish_types_list"
+
+
+class DishTypeDetailView(generic.DetailView):
+    model = DishType
+
+
+class DishListView(generic.ListView):
+    model = Dish
+    paginate_by = 5
+
+
+class DishDetailView(generic.DetailView):
+    model = Dish

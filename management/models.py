@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
+
 
 class Cook(AbstractUser):
     social = models.CharField(null=True, blank=True, max_length=63)
@@ -15,7 +17,7 @@ class Cook(AbstractUser):
 
 
 class DishType(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=63)
 
     class Meta:
         ordering = ("name",)
@@ -39,3 +41,6 @@ class Dish(models.Model):
 
     def __str__(self):
         return f"{self.name}. Price: {self.price} {self.dish_type.name}"
+
+    def get_absolute_url(self):
+        return reverse("management:dish_detail", kwargs=[str(self.id)])
