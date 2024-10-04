@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Dishes list</h1>
+  <h1>Dishes: </h1>
+  
+  {% for dish in dish_list %}
+    <li>
+      <a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a>
+    </li>
 
-  {% if dish_list %}
-    {% for dish in dish_list %}
-      <li>
-        <a href="{{ get_absolute_url.dish }}">{{ dish.name }}</a>
-      </li>
-    {% endfor %}
-  {% else %}
+    <ul>Cooks:
+      {% for cook in dish.cooks.all %}
+        <a href="{{ cook.get_absolute_url }}">
+          {{ cook.first_name }} {{ cook.last_name }}
+        </a>
+      {% endfor %}
+    </ul>
+    
+  {% empty %}
     <p>There no dishes in Kitchen </p>
-  {% endif %}
+  {% endfor %}
+
 {% endblock content %}

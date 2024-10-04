@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h3>Type dishes: <strong>{{ dish_type.name }}</strong></h3>
+
+  {% for dish in dish_type.dishes.all  %}
+    <hr>
+    <a href="{{ dish.get_absolute_url }}">
+    <p>{{ dish.name }}</p></a>
+  {% empty %}
+    <p>No Dishes.</p>
+  {% endfor %}
+
+
+
+{% endblock content %}
+

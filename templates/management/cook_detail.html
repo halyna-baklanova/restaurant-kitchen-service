@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Cook: {{ cook.first_name }} {{ cook.last_name }}</h1>
+  <p>{{ cook.social }}</p>
+  <p>Experience: <strong>{{ cook.years_of_experience }}</strong> years </p>
+  <h3>Prepares such dishes:</h3>
+  {% for dish in cook.dishes.all %}
+    <hr>
+    <a href="{{ dish.get_absolute_url }}">
+    <p>{{ dish.name }}</p></a>
+  {% empty %}
+    <p>Doesn't cook </p>
+  {% endfor %}
+
+{% endblock content %}
