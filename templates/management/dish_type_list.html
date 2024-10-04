@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Dish types list</h1>
+
+  {% if dish_types_list %}
+    {% for type in dish_types_list %}
+      <li>
+        {{ type.name }}
+      </li>
+    {% endfor %}
+  {% else %}
+    <p>There no type of dishes in Kitchen Service </p>
+  {% endif %}
+{% endblock content %}

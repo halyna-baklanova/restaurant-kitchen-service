@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Dishes list</h1>
+
+  {% if dish_list %}
+    {% for dish in dish_list %}
+      <li>
+        <a href="{{ get_absolute_url.dish }}">{{ dish.name }}</a>
+      </li>
+    {% endfor %}
+  {% else %}
+    <p>There no dishes in Kitchen </p>
+  {% endif %}
+{% endblock content %}
