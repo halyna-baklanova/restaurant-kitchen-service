@@ -13,6 +13,8 @@ from management.forms import (
     CookUpdateForm,
     DishTypeCreateForm,
     DishTypeUpdateForm,
+    DishCreateForm,
+    DishUpdateForm,
 )
 
 
@@ -89,3 +91,18 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
+
+
+class DishCreateView(generic.CreateView):
+    model = Dish
+    form_class = DishCreateForm
+
+
+class DishUpdateView(generic.UpdateView):
+    model = Dish
+    form_class = DishUpdateForm
+
+
+class DishDeleteView(generic.DeleteView):
+    model = Dish
+    form_class = DishCreateForm

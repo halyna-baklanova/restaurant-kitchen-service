@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from management.models import Cook, DishType
+from management.models import Cook, DishType, Dish
 
 
 class CookCreateForm(UserCreationForm):
@@ -34,4 +34,16 @@ class DishTypeCreateForm(forms.ModelForm):
 class DishTypeUpdateForm(forms.ModelForm):
     class Meta:
         model = DishType
+        fields = ["name"]
+
+
+class DishCreateForm(forms.ModelForm):
+    class Meta:
+        model = Dish
+        fields = ["name"]
+
+
+class DishUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Dish
         fields = ["name"]
