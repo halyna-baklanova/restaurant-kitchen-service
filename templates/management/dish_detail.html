@@ -1,24 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h3>Dish: {{ dish.name }}<a href="{% url 'management:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page">
-      Delete
-    </a>
-
-    <a href="{% url 'management:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page">
-      Update
-    </a></h3>
+  <h3>Dish: {{ dish.name }}</h3>
   <p>{{ dish.description }}</p>
   <p>Price: {{ dish.price }} $</p>
   <h3>Cooks:</h3>
   {% for cook in dish.cooks.all %}
     <a href="{{ cook.get_absolute_url }}">
-    <h6>
-    {{ cook.first_name }} {{ cook.last_name  }}
-    </h6></a>
+      <h6>
+        {{ cook.first_name }} {{ cook.last_name }}
+      </h6></a>
     <hr>
   {% empty %}
     <p>Dish no cooks yet.</p>
   {% endfor %}
-
+  {% if user.is_staff %}
+    <a href="{% url 'management:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+    <a href="{% url 'management:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
+    <a href="{% url 'management:assign-cook' dish.id %}" class="btn btn-primary">Assign cook</a>
+  {% endif %}
 {% endblock content %}

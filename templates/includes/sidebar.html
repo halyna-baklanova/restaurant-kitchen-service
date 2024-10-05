@@ -17,8 +17,10 @@
     <li>
       <a href="{% url 'management:dish-list' %}">Dishes</a>
     </li>
-    <li>
-      <a href="{% url 'management:cook-list' %}">Cooks</a>
-    </li>
+     {% if user.is_staff %}
+      <li>
+        <a href="{% url 'management:cook-list' %}">Cooks</a>
+      </li>
+    {% endif %}
   </ul>
 {% endblock sidebar %}

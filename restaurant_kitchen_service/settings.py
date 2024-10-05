@@ -136,8 +136,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "management.Cook"
 
-LOGIN_REDIRECT_URL = "/"
-
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
@@ -145,3 +143,5 @@ INTERNAL_IPS = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+LOGIN_REDIRECT_URL = "/"

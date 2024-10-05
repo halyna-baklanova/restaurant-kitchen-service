@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Assign Cook to {{ dish.name }}</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="cook">Select a cook:</label>
+    <select name="cook" id="cook">
+      {% for cook in cooks %}
+        <option value="{{ cook.id }}">{{ cook.get_username }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Assign Cook</button>
+  </form>
+{% endblock %}

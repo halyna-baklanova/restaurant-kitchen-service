@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 
 from management.views import (
     index,
@@ -17,6 +17,7 @@ from management.views import (
     DishCreateView,
     DishUpdateView,
     DishDeleteView,
+    AssignCookView,
 )
 
 urlpatterns = [
@@ -98,6 +99,11 @@ path(
         DishDeleteView.as_view(),
         name="dish-delete"
     ),
+    path(""
+         "dishes/<int:dish_id>/assign-cook/",
+         AssignCookView.as_view(),
+         name="assign-cook"
+         ),
 ]
 
 app_name = "management"

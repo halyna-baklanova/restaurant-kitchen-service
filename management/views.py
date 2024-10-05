@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponse, HttpRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
+from django.views import View
 
 
 from management.models import Dish, Cook, DishType
@@ -30,9 +31,15 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "management/index.html", context=context)
 
 
-class CookListView(LoginRequiredMixin, generic.ListView):
+class CookListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
     model = Cook
     paginate_by = 5
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+    def handle_no_permission(self):
+        return self.render_to_response({"error": "You do not have permission to view this page."})
 
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
@@ -108,3 +115,21 @@ class DishDeleteView(generic.DeleteView):
     model = Dish
     form_class = DishCreateForm
     success_url = reverse_lazy("management:dish-list")
+
+
+class AssignCookView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.is_staff
+
+    def get(self, request, dish_id):
+        dish = Dish.objects.get(id=dish_id)
+        cooks = Cook.objects.all()
+        return render(request, "management/assign_cook.html", {"dish": dish, "cooks": cooks})
+
+    def post(self, request, dish_id):
+        dish = Dish.objects.get(id=dish_id)
+        cook_id = request.POST.get("cook")
+        cook = Cook.objects.get(id=cook_id)
+
+        dish.cooks.add(cook)
+        return redirect("management:dish-detail", pk=dish_id)
