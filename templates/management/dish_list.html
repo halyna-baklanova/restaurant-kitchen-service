@@ -10,9 +10,11 @@
 
     <ul>Cooks:
       {% for cook in dish.cooks.all %}
+        <ul>
         <a href="{{ cook.get_absolute_url }}">
           {{ cook.first_name }} {{ cook.last_name }}
         </a>
+        </ul>
       {% endfor %}
     </ul>
     

@@ -2,6 +2,13 @@
 
 {% block content %}
   <h3>Type dishes: <strong>{{ dish_type.name }}</strong></h3>
+    <a href="{% url 'management:dish-type-delete' pk=dish_type.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+
+    <a href="{% url 'management:dish-type-update' pk=dish_type.id %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
 
   {% for dish in dish_type.dishes.all  %}
     <hr>

@@ -8,7 +8,12 @@ from django.views import generic
 from management.models import Dish, Cook, DishType
 
 
-from management.forms import CookCreationForm, CookUpdatingForm
+from management.forms import (
+    CookCreateForm,
+    CookUpdateForm,
+    DishTypeCreateForm,
+    DishTypeUpdateForm,
+)
 
 
 @login_required
@@ -33,17 +38,17 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
 
 class CookCreateView(generic.CreateView):
     model = Cook
-    form_class = CookCreationForm
+    form_class = CookCreateForm
 
 
 class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
-    form_class = CookUpdatingForm
+    form_class = CookUpdateForm
 
 
 class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
-    form_class = CookCreationForm
+    form_class = CookCreateForm
 
 
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
@@ -57,6 +62,24 @@ class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = DishType
     template_name = "management/dish_type_detail.html"
     context_object_name = "dish_type"
+
+
+class DishTypeCreateView(generic.CreateView):
+    model = DishType
+    form_class = DishTypeCreateForm
+    template_name = "management/dish_type_form.html"
+
+
+class DishTypeUpdateView(generic.UpdateView):
+    model = DishType
+    form_class = DishTypeUpdateForm
+    template_name = "management/dish_type_form.html"
+
+
+class DishTypeDeleteView(generic.DeleteView):
+    model = DishType
+    form_class = DishTypeCreateForm
+    template_name = "management/dish_type_confirm_delete.html"
 
 
 class DishListView(LoginRequiredMixin, generic.ListView):
