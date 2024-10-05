@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 from django.views import generic
+from django.urls import reverse_lazy
 
 
 from management.models import Dish, Cook, DishType
@@ -106,3 +107,4 @@ class DishUpdateView(generic.UpdateView):
 class DishDeleteView(generic.DeleteView):
     model = Dish
     form_class = DishCreateForm
+    success_url = reverse_lazy("management:dish-list")

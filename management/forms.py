@@ -13,8 +13,6 @@ class CookCreateForm(UserCreationForm):
             "years_of_experience",
         )
 
-    # def clean(self):
-    #     validate_years_of_experience(self.cleaned_data)
 
 class CookUpdateForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -40,10 +38,20 @@ class DishTypeUpdateForm(forms.ModelForm):
 class DishCreateForm(forms.ModelForm):
     class Meta:
         model = Dish
-        fields = ["name"]
+        fields = [
+            "name",
+            "description",
+            "price",
+            "dish_type",
+        ]
 
 
 class DishUpdateForm(forms.ModelForm):
     class Meta:
         model = Dish
-        fields = ["name"]
+        fields = [
+            "name",
+            "description",
+            "price",
+            "dish_type",
+        ]
