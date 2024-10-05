@@ -6,8 +6,6 @@
         {% csrf_token %}
         <button type="submit">Logout</button>
       </form>
-    {% else %}
-      <li class="list-group-item"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
     {% endif %}
 
     <a href="{% url 'management:index' %}">Home</a>
