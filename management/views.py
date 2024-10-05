@@ -8,6 +8,9 @@ from django.views import generic
 from management.models import Dish, Cook, DishType
 
 
+from management.forms import CookCreationForm, CookUpdatingForm
+
+
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
     num_dishes = Dish.objects.count()
@@ -26,6 +29,21 @@ class CookListView(LoginRequiredMixin, generic.ListView):
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
+
+
+class CookCreateView(generic.CreateView):
+    model = Cook
+    form_class = CookCreationForm
+
+
+class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Cook
+    form_class = CookUpdatingForm
+
+
+class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Cook
+    form_class = CookCreationForm
 
 
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
