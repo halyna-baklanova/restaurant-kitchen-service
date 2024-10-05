@@ -1,27 +1,37 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}  {# Load the correct tags #}
 
 {% block content %}
-  <h1>Dishes:<a href="{% url "management:dish-create" %}" class="btn btn-primary link-to-page">
-          Create
-      </a> </h1>
-  
-  {% for dish in dish_list %}
-    <li>
-      <a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a>
-    </li>
+  <h1>Dishes:
+    <a href="{% url 'management:dish-create' %}" class="btn btn-primary link-to-page">Create</a>
+  </h1>
 
-    <ul>Cooks:
-      {% for cook in dish.cooks.all %}
-        <ul>
-        <a href="{{ cook.get_absolute_url }}">
-          {{ cook.first_name }} {{ cook.last_name }}
-        </a>
+  <form action="" method="get">  {# Change method to 'get' for search #}
+    {{ search_form|crispy }}
+    <input type="submit" value="Search" class="btn btn-primary">
+  </form>
+
+  <ul>
+    {% for dish in dish_list %}
+      <li>
+        <a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a>
+        <ul>Cooks:
+          {% for cook in dish.cooks.all %}
+            <li>
+              {% if user.is_staff %}
+                <a href="{{ cook.get_absolute_url }}">
+              {% endif %}
+              {{ cook.first_name }} {{ cook.last_name }}
+              {% if user.is_staff %}
+                </a>
+              {% endif %}
+            </li>
+          {% endfor %}
         </ul>
-      {% endfor %}
-    </ul>
-    
-  {% empty %}
-    <p>There no dishes in Kitchen </p>
-  {% endfor %}
+      </li>
+    {% empty %}
+      <p>No dishes.</p>
+    {% endfor %}
+  </ul>
 
 {% endblock content %}

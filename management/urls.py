@@ -99,7 +99,7 @@ path(
         DishDeleteView.as_view(),
         name="dish-delete"
     ),
-    path(""
+    path(
          "dishes/<int:dish_id>/assign-cook/",
          AssignCookView.as_view(),
          name="assign-cook"

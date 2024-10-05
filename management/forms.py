@@ -55,3 +55,9 @@ class DishUpdateForm(forms.ModelForm):
             "price",
             "dish_type",
         ]
+
+
+class DishCookSearchForm(forms.Form):
+    cook = forms.CharField(max_length=255, required=False)
+
+
