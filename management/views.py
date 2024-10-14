@@ -19,5 +19,10 @@ class DishTypeListView(generic.ListView):
     model = DishType
     template_name = "management/dish_type_list.html"
 
+    context_object_name = "dish_types_list"  # Назва контексту
+
+    def get_queryset(self):
+        return DishType.objects.prefetch_related("dishes").all()
+
     def get_success_url(self):
         return reverse("management:dish-type-list")

@@ -32,9 +32,6 @@ class DishType(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse("management:dish-type-detail", kwargs={"pk": self.pk})
-
 
 class Dish(models.Model):
     name = models.CharField(max_length=255)
@@ -62,6 +59,3 @@ class Dish(models.Model):
 
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return reverse("management:dish-detail", kwargs={"pk": self.pk})
