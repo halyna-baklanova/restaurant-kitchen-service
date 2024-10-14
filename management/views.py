@@ -15,6 +15,17 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "management/index.html", context=context)
 
 
+class CookListView( generic.ListView):
+    model = Cook
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CookListView, self).get_context_data(**kwargs)
+        return context
+
+
+class CookDetailView(generic.DetailView):
+    model = Cook
 
 
 class DishTypeListView(generic.ListView):
@@ -29,10 +40,11 @@ class DishTypeListView(generic.ListView):
     def get_success_url(self):
         return reverse("management:dish-type-list")
 
+
 class DishListView(generic.ListView):
     model = Dish
-    context_object_name = "dish_list"
+    context_object_name = "dishes_list"
     template_name = "management/dish_list.html"
 
     def get_queryset(self):
-        return Dish.objects.all()
+        return super().get_queryset()
