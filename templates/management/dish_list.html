@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="container">
+    <div style="padding-top: 100px;">
+      <h1 class="mb-4">
+        Dish list:
+
+      </h1>
+
+      <ul class="list-group">
+        {% for dish in dish_list %}
+          <li class="list-group-item">
+            <a href="{{ dish.get_absolute_url }}" class="dish-link"> {{ dish.name }} </a>
+            <ul class="list-unstyled ms-3 mt-2">
+              <li><strong>Cooks:</strong></li>
+              {% for cook in dish.cooks.all %}
+                <li>
+                  <ul>
+                    <a href="">
+                      <li>{{ cook.first_name }} {{ cook.last_name }}</li>
+                    </a>
+                  </ul>
+                </li>
+              {% endfor %}
+            </ul>
+            {% if user.is_staff %}
+              <div class="mt-4 d-flex justify-content">
+
+              </div>
+            {% endif %}
+          </li>
+        {% empty %}
+          <p>No dishes.</p>
+        {% endfor %}
+      </ul>
+    </div>
+    {% block pagination %}
+
+    {% endblock pagination %}
+  </div>
+{% endblock content %}
+      

@@ -15,14 +15,24 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "management/index.html", context=context)
 
 
+
+
 class DishTypeListView(generic.ListView):
     model = DishType
+    context_object_name = "dish_types_list"
     template_name = "management/dish_type_list.html"
 
-    context_object_name = "dish_types_list"  # Назва контексту
 
     def get_queryset(self):
         return DishType.objects.prefetch_related("dishes").all()
 
     def get_success_url(self):
         return reverse("management:dish-type-list")
+
+class DishListView(generic.ListView):
+    model = Dish
+    context_object_name = "dish_list"
+    template_name = "management/dish_list.html"
+
+    def get_queryset(self):
+        return Dish.objects.all()

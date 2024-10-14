@@ -2,7 +2,7 @@
 
 from django.urls import path
 
-from management.views import index, DishTypeListView
+from management.views import index, DishTypeListView, DishListView
 
 urlpatterns = [
     path("", index, name="index"),
@@ -10,6 +10,10 @@ urlpatterns = [
         "dish-types/",
         DishTypeListView.as_view(),
         name="dish-type-list"
+    ),
+    path(
+        "dishes/", DishListView.as_view(),
+        name="dish-list"
     ),
 ]
 
