@@ -15,7 +15,7 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "management/index.html", context=context)
 
 
-class CookListView( generic.ListView):
+class CookListView(generic.ListView):
     model = Cook
     paginate_by = 5
 
@@ -41,6 +41,10 @@ class DishTypeListView(generic.ListView):
         return reverse("management:dish-type-list")
 
 
+class DishTypeDetailView(generic.DetailView):
+    model = DishType
+
+
 class DishListView(generic.ListView):
     model = Dish
     context_object_name = "dishes_list"
@@ -48,3 +52,6 @@ class DishListView(generic.ListView):
 
     def get_queryset(self):
         return super().get_queryset()
+
+class DishDetailView(generic.DetailView):
+    model = DishType
