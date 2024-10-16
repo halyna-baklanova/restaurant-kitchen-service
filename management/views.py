@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 
 from management.models import Dish, Cook, DishType
@@ -68,6 +68,24 @@ class DishTypeDetailView(generic.DetailView):
     model = DishType
 
 
+class DishTypeCreateView(generic.CreateView):
+    model = DishType
+    template_name = "management/dish_type_form.html"
+
+
+class DishTypeUpdateView(generic.UpdateView):
+    model = DishType
+    template_name = "management/dish_type_form.html"
+
+
+class DishTypeDeleteView(generic.DeleteView):
+    model = DishType
+    template_name = "management/dish_type_confirm_delete.html"
+
+    def get_success_url(self):
+        return reverse("management:dish-type-list")
+
+
 class DishListView(generic.ListView):
     model = Dish
     context_object_name = "dishes_list"
@@ -78,3 +96,21 @@ class DishListView(generic.ListView):
 
 class DishDetailView(generic.DetailView):
     model = DishType
+
+class DishCreateView(generic.CreateView):
+    model = Dish
+
+
+class DishUpdateView(generic.UpdateView):
+    model = Dish
+    template_name = "management/dish_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy("management:dish-list")
+
+
+class DishDeleteView(generic.DeleteView):
+    model = Dish
+
+    def get_success_url(self):
+        return reverse("management:dish-list")

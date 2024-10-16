@@ -1,14 +1,15 @@
-
 {% extends "base.html" %}
 {% block content %}
-
+  {% include "includes/navigation.html" %}
   <div class="container">
     <div style="padding-top: 100px;">
       <h1 class="mb-4">
         Dish list:
-
+        <a href="{% url 'management:dish-create' %}" class="btn btn-primary link-to-page float-end">
+          Create
+        </a>
       </h1>
-
+      {% include "includes/search_form.html" %}
       <ul class="list-group">
         {% for dish in dish_list %}
           <li class="list-group-item">
@@ -18,7 +19,7 @@
               {% for cook in dish.cooks.all %}
                 <li>
                   <ul>
-                    <a href="">
+                    <a href="{% url 'management:cook-detail' pk=cook.id %}">
                       <li>{{ cook.first_name }} {{ cook.last_name }}</li>
                     </a>
                   </ul>
@@ -27,7 +28,9 @@
             </ul>
             {% if user.is_staff %}
               <div class="mt-4 d-flex justify-content">
-
+                <a href="{% url 'management:dish-cook-update' pk=dish.id %}" class="btn me-2">
+                  Edit Cooks
+                </a>
               </div>
             {% endif %}
           </li>
@@ -37,8 +40,7 @@
       </ul>
     </div>
     {% block pagination %}
-
+      {% include "includes/pagination.html" %}
     {% endblock pagination %}
   </div>
 {% endblock content %}
-

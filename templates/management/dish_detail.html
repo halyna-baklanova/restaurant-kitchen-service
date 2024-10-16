@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+  {% include "includes/navigation.html" %}
+  <div class="container mt-4 main-content" style="padding-top: 100px;">
+    <h3 class="mb-4">Dish: {{ dish.name }}</h3>
+    <p>{{ dish.description }}</p>
+    <p>Price: <strong>{{ dish.price }} $</strong></p>
+    <h3 class="mt-4">Cooks:</h3>
+    {% if dish.cooks.all %}
+      <ul class="list-group mt-2">
+        {% for cook in dish.cooks.all %}
+          <li class="list-group-item">
+            <a href="{{ cook.get_absolute_url }}">
+              <h6 class="mb-0">{{ cook.first_name }} {{ cook.last_name }}</h6>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="alert alert-warning mt-2">
+        Dish has no cooks yet.
+      </div>
+    {% endif %}
+    {% if user.is_staff %}
+      <div class="mt-4">
+        <a href="{% url 'management:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page me-2">
+          Delete
+        </a>
+        <a href="{% url 'management:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page me-2">
+          Update
+        </a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock content %}
