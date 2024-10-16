@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  {% include "includes/navigation.html" %}
+  <div class="container mt-4 main-content" style="padding-top: 100px;">
+    <h1>
+      Dish types:
+      <a href="{% url "management:dish-type-create" %}" class="btn btn-primary link-to-page">
+        Create
+      </a>
+    </h1>
+    <ul>
+      {% for type in dish_types_list %}
+        <li>
+          <a href="{{ type.get_absolute_url }}">{{ type.name }}</a>
+        </li>
+      {% empty %}
+        <p>There are no types of dishes in Kitchen Service.</p>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock content %}

@@ -25,4 +25,8 @@ urlpatterns = [
         "management.urls",
         namespace="management",)
     ),
+    path(
+        "accounts/",
+        include("django.contrib.auth.urls")
+    ),
 ]
