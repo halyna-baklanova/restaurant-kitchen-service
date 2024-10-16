@@ -32,6 +32,25 @@ class CookDetailView(generic.DetailView):
         return render(request, "management/cook_detail.html")
 
 
+class CookCreateView(generic.CreateView):
+    model = Cook
+
+
+class CookUpdateView(
+    generic.UpdateView
+):
+    model = Cook
+
+
+class CookDeleteView(
+    generic.DeleteView
+):
+    model = Cook
+
+    def get_success_url(self):
+        return reverse("management:cook-list")
+
+
 class DishTypeListView(generic.ListView):
     model = DishType
     context_object_name = "dish_types_list"
