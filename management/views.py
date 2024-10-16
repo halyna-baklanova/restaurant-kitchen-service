@@ -28,9 +28,6 @@ class CookListView(generic.ListView):
 class CookDetailView(generic.DetailView):
     model = Cook
 
-    def get(self, request, pk):
-        return render(request, "management/cook_detail.html")
-
 
 class CookCreateView(generic.CreateView):
     model = Cook
@@ -88,11 +85,9 @@ class DishTypeDeleteView(generic.DeleteView):
 
 class DishListView(generic.ListView):
     model = Dish
-    context_object_name = "dishes_list"
     template_name = "management/dish_list.html"
 
-    def get_queryset(self):
-        return super().get_queryset()
+
 
 class DishDetailView(generic.DetailView):
     model = DishType

@@ -50,11 +50,12 @@
               <div class="p-2 d-flex flex-column align-items-center justify-content-center">
                 <h3 class="mt-4">
                   Currently, there are:
-
-                  <span style="color: #e2ac67"><span id="state1" countTo="{{ num_cooks }}">0</span>+</span> cooks and
-                  <span style="color: #e2ac67"><span id="state2" countTo="{{ num_dishes }}">0</span>+</span> dishes.
-
+                  <strong style="color: #e2ac67;" id="state1" countTo="{{ num_cooks }}">{{ num_cooks }}+</strong> cooks
+                  and
+                  <strong style="color: #e2ac67;" id="state2" countTo="{{ num_dishes }}">{{ num_dishes }}+</strong>
+                  dishes.
                 </h3>
+
                 <h4>Let's cook</h4>
                 <a href="{% url 'management:dish-list' %}" class="btn btn-primary">DISHES</a>
               </div>

@@ -31,11 +31,6 @@ path(
         name="cook-detail"
     ),
     path(
-        "dish-types/",
-        DishTypeListView.as_view(),
-        name="dish-type-list"
-    ),
-    path(
         "cooks/create",
         CookCreateView.as_view(),
         name="cook-create"
@@ -49,6 +44,11 @@ path(
         "cooks/delete/<int:pk>",
         CookDeleteView.as_view(),
         name="cook-delete"
+    ),
+    path(
+        "dish-types/",
+        DishTypeListView.as_view(),
+        name="dish-type-list"
     ),
 path(
         "dish-types/<int:pk>",
@@ -71,7 +71,8 @@ path(
         name="dish-type-delete"
     ),
     path(
-        "dishes/", DishListView.as_view(),
+        "dishes/",
+        DishListView.as_view(),
         name="dish-list"
     ),
     path(
