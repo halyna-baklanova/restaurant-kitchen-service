@@ -1,13 +1,11 @@
 <!DOCTYPE "html">
 <html lang="en">
-
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="{{ ASSETS_ROOT }}/img/icon_page_test.png">
   <link rel="icon" type="image/png" href="{{ ASSETS_ROOT }}/img/icon_page_test.png">
   <link rel="canonical" href="https://appseed.us/ui-kit/soft-ui-design-system"/>
-
   <title>
     Management{% block title %}{% endblock %}
   </title>
@@ -21,23 +19,9 @@
   <link href="{{ ASSETS_ROOT }}/css/nucleo-svg.css" rel="stylesheet"/>
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ ASSETS_ROOT }}/css/soft-design-system.css?v=1.0.1" rel="stylesheet"/>
-
-  <!-- Specific CSS goes HERE -->
-  {% block stylesheets %}{% endblock stylesheets %}
 </head>
-
-
 <body class="{% block body_class %}{% endblock body_class %}" style="background-color: #e6ebf1">
-
-
 {% block content %}{% endblock content %}
-
 {% include "includes/footer.html" %}
-
-{% include "includes/scripts.html" %}
-
-<!-- Specific JS goes HERE -->
-{% block javascripts %}{% endblock javascripts %}
-
 </body>
 </html>

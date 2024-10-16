@@ -1,8 +1,6 @@
-
 {% extends "base.html" %}
 {% block content %}
-  
-  <div class="container mt-4 main-content" style="padding-top: 100px;">
+    <div class="container mt-4 main-content" style="padding-top: 100px;">
     <h3 class="mb-4">
       Cook: {{ cook.first_name }} {{ cook.last_name }}
       <div class="float-end">
@@ -30,6 +28,5 @@
         Doesn't cook any dishes.
       </div>
     {% endif %}
-
   </div>
 {% endblock content %}

@@ -35,5 +35,8 @@
         {% endfor %}
       </ul>
     </div>
+    {% block pagination %}
+      {% include "includes/pagination.html" %}
+    {% endblock pagination %}
   </div>
 {% endblock %}

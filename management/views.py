@@ -18,7 +18,6 @@ def index(request: HttpRequest) -> HttpResponse:
 class CookListView(generic.ListView):
     model = Cook
     paginate_by = 5
-    template_name = "management/cook_list.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CookListView, self).get_context_data(**kwargs)
@@ -33,9 +32,7 @@ class CookCreateView(generic.CreateView):
     model = Cook
 
 
-class CookUpdateView(
-    generic.UpdateView
-):
+class CookUpdateView(generic.UpdateView):
     model = Cook
 
 
@@ -50,6 +47,7 @@ class CookDeleteView(
 
 class DishTypeListView(generic.ListView):
     model = DishType
+    paginate_by = 5
     context_object_name = "dish_types_list"
     template_name = "management/dish_type_list.html"
 
@@ -63,6 +61,7 @@ class DishTypeListView(generic.ListView):
 
 class DishTypeDetailView(generic.DetailView):
     model = DishType
+    template_name = "management/dish_type_form.html"
 
 
 class DishTypeCreateView(generic.CreateView):
@@ -85,12 +84,12 @@ class DishTypeDeleteView(generic.DeleteView):
 
 class DishListView(generic.ListView):
     model = Dish
-    template_name = "management/dish_list.html"
-
+    paginate_by = 4
 
 
 class DishDetailView(generic.DetailView):
-    model = DishType
+    model = Dish
+
 
 class DishCreateView(generic.CreateView):
     model = Dish
