@@ -13,7 +13,7 @@
       <ul class="list-group">
         {% for dish in dish_list %}
           <li class="list-group-item">
-            <a href="{{ dish.get_absolute_url }}" class="dish-link"> {{ dish.name }} </a>
+            <a href="{{ dish.get_absolute_url }}" class="dish-link"> {{ dish }} </a>
             <ul class="list-unstyled ms-3 mt-2">
               <li><strong>Cooks:</strong></li>
               {% for cook in dish.cooks.all %}
