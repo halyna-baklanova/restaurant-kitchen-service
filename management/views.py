@@ -1,10 +1,14 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from django.urls import reverse, reverse_lazy
 from django.views import generic
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from management.models import Dish, Cook, DishType
 
+@login_required
 def index(request: HttpRequest) -> HttpResponse:
     num_dishes = Dish.objects.count()
     num_cooks = Cook.objects.count()
@@ -15,7 +19,7 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "management/index.html", context=context)
 
 
-class CookListView(generic.ListView):
+class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
     paginate_by = 5
 
@@ -24,19 +28,20 @@ class CookListView(generic.ListView):
         return context
 
 
-class CookDetailView(generic.DetailView):
+class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
 
 
-class CookCreateView(generic.CreateView):
+class CookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
 
 
-class CookUpdateView(generic.UpdateView):
+class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
 
 
 class CookDeleteView(
+    LoginRequiredMixin,
     generic.DeleteView
 ):
     model = Cook
@@ -45,7 +50,7 @@ class CookDeleteView(
         return reverse("management:cook-list")
 
 
-class DishTypeListView(generic.ListView):
+class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     paginate_by = 5
     context_object_name = "dish_types_list"
@@ -59,22 +64,22 @@ class DishTypeListView(generic.ListView):
         return reverse("management:dish-type-list")
 
 
-class DishTypeDetailView(generic.DetailView):
+class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = DishType
     template_name = "management/dish_type_form.html"
 
 
-class DishTypeCreateView(generic.CreateView):
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
     template_name = "management/dish_type_form.html"
 
 
-class DishTypeUpdateView(generic.UpdateView):
+class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
     template_name = "management/dish_type_form.html"
 
 
-class DishTypeDeleteView(generic.DeleteView):
+class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = DishType
     template_name = "management/dish_type_confirm_delete.html"
 
@@ -82,20 +87,20 @@ class DishTypeDeleteView(generic.DeleteView):
         return reverse("management:dish-type-list")
 
 
-class DishListView(generic.ListView):
+class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     paginate_by = 4
 
 
-class DishDetailView(generic.DetailView):
+class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
 
 
-class DishCreateView(generic.CreateView):
+class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
 
 
-class DishUpdateView(generic.UpdateView):
+class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
     template_name = "management/dish_form.html"
 
@@ -103,7 +108,7 @@ class DishUpdateView(generic.UpdateView):
         return reverse_lazy("management:dish-list")
 
 
-class DishDeleteView(generic.DeleteView):
+class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Dish
 
     def get_success_url(self):

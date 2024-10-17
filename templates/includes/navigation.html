@@ -3,34 +3,34 @@
     <div class="col-12">
       <nav
           class="navbar navbar-expand-lg  blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4"
-        <div class="container-fluid">
+      <div class="container-fluid">
 
-          <a class="navbar-brand font-weight-bolder ms-sm-3"
-             href="/" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
-            Restaurant kitchen service
-          </a>
+        <a class="navbar-brand font-weight-bolder ms-sm-3"
+           href="/" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom">
+          Restaurant kitchen service
+        </a>
 
-          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
-                  aria-label="Toggle navigation">
+        <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+                aria-label="Toggle navigation">
               <span class="navbar-toggler-icon mt-2">
                 <span class="navbar-toggler-bar bar1"></span>
                 <span class="navbar-toggler-bar bar2"></span>
                 <span class="navbar-toggler-bar bar3"></span>
               </span>
-          </button>
+        </button>
 
-          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
-            <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+        <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
+          <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
 
-              <li class="nav-item  dropdown dropdown-hover mx-2">
-                <a href="{% url 'management:index' %}"
-                   class="nav-link  ps-2 d-flex justify-content-between cursor-pointer align-items-center"
-                   aria-expanded="false">
-                  Home
-                </a>
-              </li>
-{% if user.is_staff %}
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a href="{% url 'management:index' %}"
+                 class="nav-link  ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                 aria-expanded="false">
+                Home
+              </a>
+            </li>
+            {% if user.is_staff %}
               <li class="nav-item dropdown dropdown-hover mx-2">
                 <a href="{% url 'management:cook-list' %}"
                    class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
@@ -38,40 +38,44 @@
                   Cooks
                 </a>
               </li>
-              {% endif %}
+            {% endif %}
 
-              <li class="nav-item dropdown dropdown-hover mx-2">
-                <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
-                   href="{% url 'management:dish-list' %}" aria-expanded="false">
-                  Dishes
-                </a>
-              </li>
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                 href="{% url 'management:dish-list' %}" aria-expanded="false">
+                Dishes
+              </a>
+            </li>
 
-              <li class="nav-item dropdown dropdown-hover mx-2">
-                <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
-                   href="{% url 'management:dish-type-list' %}" aria-expanded="false">
-                  Dish types
-                </a>
-              </li>
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                 href="{% url 'management:dish-type-list' %}" aria-expanded="false">
+                Dish types
+              </a>
+            </li>
 
-              <li class="nav-item dropdown dropdown-hover mx-2">
+            <li class="nav-item dropdown dropdown-hover mx-2">
+              <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                 href="{{ user.get_absolute_url }}" aria-expanded="false">
+                User:<strong> {{ user.get_username }}</strong>
+              </a>
+            </li>
+          
+            <li class="nav-item ms-lg-auto">
+              <form class="nav-link nav-link-icon me-2" method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="d-inline text-sm z-index-1 font-weight-bold"
+                        style="border: none; background: none;" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="Logout">
+                  <i class="fa fa-sign-out me-1"></i>Logout
+                </button>
+              </form>
+            </li>
 
-                <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
-                   href="{{ user.get_absolute_url }}" aria-expanded="false">
-                  User:<strong> {{ user.get_username }}</strong>
-                </a>
-              </li>
 
-              <li class="nav-item ms-lg-auto">
-                <a class="nav-link nav-link-icon me-2" href="{% url 'logout' %}">
-                  <i class="fa fa-sign-out me-1"></i>
-                  <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-                     data-bs-placement="bottom" title="Logout">Logout</p>
-                </a>
-              </li>
-            </ul>
-          </div>
+          </ul>
         </div>
+      </div>
       </nav>
       <!-- End Navbar -->
     </div>
