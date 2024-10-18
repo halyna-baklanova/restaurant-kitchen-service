@@ -33,7 +33,6 @@ class DishType(models.Model):
         return self.name
 
 
-
 class Dish(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()

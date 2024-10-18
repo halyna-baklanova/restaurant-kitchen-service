@@ -30,3 +30,5 @@ urlpatterns = [
         include("django.contrib.auth.urls")
     ),
 ]
+
+handler403 = "management.views.custom_permission_denied_view"

@@ -12,19 +12,29 @@
       {% include "includes/search_form.html" %}
       <ul class="list-group">
         {% for type in dish_types_list %}
-          <li class="list-group-item">
-            <a href="{{ type.get_absolute_url }}">{{ type.name }}</a>
-            {% if type.dishes.all %}
-              <ul class="mt-2">
-                {% for dish in type.dishes.all %}
-                  <li>
-                    <a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% else %}
-              <p class="text-muted">No dishes available for this type.</p>
-            {% endif %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              {{ type }}
+              {% if type.dishes.all %}
+                <ul class="mt-2">
+                  {% for dish in type.dishes.all %}
+                    <li>
+                      <a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <p class="text-muted">No dishes available for this type.</p>
+              {% endif %}
+            </div>
+            <!-- Edit and Delete Buttons -->
+            <div>
+              <a href="{% url 'management:dish-type-update' type.id %}" class="btn btn-warning btn-sm me-2">Edit</a>
+              <form action="{% url 'management:dish-type-delete' type.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            </div>
           </li>
         {% empty %}
           <li class="list-group-item">
