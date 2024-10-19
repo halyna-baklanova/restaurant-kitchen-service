@@ -21,6 +21,7 @@
             <th>First name</th>
             <th>Last name</th>
             <th>Experience</th>
+            <th>Count of dishes</th>
             
           </tr>
           </thead>
@@ -36,6 +37,7 @@
               <td>{{ cook.first_name }}</td>
               <td>{{ cook.last_name }}</td>
               <td>{{ cook.years_of_experience }}</td>
+            <td>{{ cook.dishes.count }}</td>
             <td><a href="{% url 'management:cook-update' pk=cook.id %}" class="btn btn-secondary text-white">
     Update
 </a>

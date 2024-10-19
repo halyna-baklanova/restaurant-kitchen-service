@@ -2,18 +2,19 @@
 {% block content %}
   {% include "includes/navigation.html" %}
   <div class="container">
-    <div style="padding-top: 100px;">
+    <h3 style="padding-top: 100px;">
       <h1 class="mb-4">
         Dish list:
         <a href="{% url 'management:dish-create' %}" class="btn btn-primary link-to-page float-end">
           Create
         </a>
+
       </h1>
       {% include "includes/search_form.html" %}
       <ul class="list-group">
         {% for dish in dish_list %}
           <li class="list-group-item">
-            <a href="{{ dish.get_absolute_url }}" class="dish-link"> {{ dish }} </a>
+            <h4><font color="#ff4500">{{ dish }}</font></h4><a href="{{ dish.get_absolute_url }}">Learn more...</a>
             <ul class="list-unstyled ms-3 mt-2">
               <li><strong>Cooks:</strong></li>
               {% for cook in dish.cooks.all %}
@@ -25,6 +26,16 @@
                   </ul>
                 </li>
               {% endfor %}
+                    {% if user.is_staff %}
+      <div class="mt-4">
+        <a href="{% url 'management:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page me-2">
+          Delete
+        </a>
+        <a href="{% url 'management:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page me-2">
+          Update
+        </a>
+      </div>
+    {% endif %}
             </ul>
           </li>
         {% empty %}

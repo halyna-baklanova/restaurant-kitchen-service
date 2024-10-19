@@ -1,3 +1,4 @@
+{% load query_transform %}
 {% block pagination %}
   {% if is_paginated %}
     <div class="custom-pagination">
@@ -13,8 +14,9 @@
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
         </span>
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            <a href="?{% query_transform request page=page_obj.next_page_number %}">next</a>
+            <a href="?{% query_transform request page=page_obj.next_page_number %}">last</a>
+
         {% else %}
             <span class="disabled">next</span>
             <span class="disabled">last &raquo;</span>

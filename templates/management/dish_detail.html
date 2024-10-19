@@ -23,11 +23,8 @@
     {% endif %}
     {% if user.is_staff %}
       <div class="mt-4">
-        <a href="{% url 'management:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page me-2">
-          Delete
-        </a>
-        <a href="{% url 'management:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page me-2">
-          Update
+        <a href="{% url 'management:dish-assign-cooks' pk=dish.id %}" class="btn btn-secondary link-to-page me-2">
+          Assign cooks
         </a>
       </div>
     {% endif %}

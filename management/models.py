@@ -10,11 +10,6 @@ class Cook(AbstractUser):
 
     class Meta:
         ordering = ["username"]
-        permissions = [
-            ("can_edit_cook", "Can edit cook"),
-            ("can_delete_cook", "Can delete cook"),
-            ("can_create_cook", "Can create cook"),
-        ]
 
     def __str__(self):
         return f"{self.username} ({self.first_name} {self.last_name})"

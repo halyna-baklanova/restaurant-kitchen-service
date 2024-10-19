@@ -13,6 +13,7 @@ from management.views import (
     DishDeleteView,
     DishTypeCreateView,
     DishTypeUpdateView,
+    DishAssignCooksView,
     DishTypeDeleteView,
     CookCreateView,
     CookUpdateView,
@@ -39,6 +40,11 @@ path(
         "cooks/update/<int:pk>",
         CookUpdateView.as_view(),
         name="cook-update"
+    ),
+    path(
+        "dishes/<int:pk>/assign-cooks/",
+        DishAssignCooksView.as_view(),
+        name="dish-assign-cooks"
     ),
     path(
         "cooks/delete/<int:pk>",
