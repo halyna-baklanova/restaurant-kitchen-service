@@ -16,6 +16,7 @@ from management.forms import (
 )
 from management.models import Dish, Cook, DishType
 
+
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
     num_dishes = Dish.objects.count()
@@ -26,8 +27,10 @@ def index(request: HttpRequest) -> HttpResponse:
     }
     return render(request, "management/index.html", context=context)
 
+
 def custom_permission_denied_view(request, exception=None):
     return render(request, "403.html", status=403)
+
 
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
@@ -45,7 +48,9 @@ class CookListView(LoginRequiredMixin, generic.ListView):
         queryset = Cook.objects.all()
         form = CookSearchForm(self.request.GET)
         if form.is_valid():
-            return queryset.filter(username__icontains=form.cleaned_data["username"])
+            return queryset.filter(
+                username__icontains=form.cleaned_data["username"]
+            )
         return queryset
 
 
@@ -85,13 +90,13 @@ class CookUpdateView(
         return self.request.user.is_staff
 
 
-
 class CookDeleteView(
     LoginRequiredMixin,
     UserPassesTestMixin,
     generic.DeleteView
 ):
     model = Cook
+
     def get_success_url(self):
         return reverse("management:cook-list")
 
@@ -187,6 +192,7 @@ class DishListView(
                 Q(cooks__last_name__icontains=cook_name)
             ).distinct()
         return queryset
+
 
 class DishDetailView(
     LoginRequiredMixin,

@@ -22,11 +22,12 @@ from management.views import (
 
 urlpatterns = [
     path("", index, name="index"),
-    path("cooks/",
+    path(
+        "cooks/",
          CookListView.as_view(),
          name="cook-list"
-         ),
-path(
+    ),
+    path(
         "cooks/<int:pk>",
         CookDetailView.as_view(),
         name="cook-detail"
@@ -56,12 +57,12 @@ path(
         DishTypeListView.as_view(),
         name="dish-type-list"
     ),
-path(
+    path(
         "dish-types/<int:pk>",
         DishTypeDetailView.as_view(),
         name="dish-types-detail"
     ),
-path(
+    path(
         "dish-types/create",
         DishTypeCreateView.as_view(),
         name="dish-type-create"
