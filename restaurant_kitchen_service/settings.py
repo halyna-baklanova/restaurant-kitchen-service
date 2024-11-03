@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 import dj_database_url
+from django import middleware
 from dotenv import load_dotenv
 
 from django.conf.global_settings import AUTH_USER_MODEL
@@ -28,6 +29,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "8c(e&2uwq_apthw68z#5sdu4zc&#ln
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
+
 
 ALLOWED_HOSTS = ["127.0.0.1"]
 
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
