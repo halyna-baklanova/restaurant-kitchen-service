@@ -100,12 +100,6 @@ DATABASES = {
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES["default"].update(db_from_env)
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default="postgresql://neondb_owner:jNZPD9EObL6x@ep-small-mud-a8te9skq.eastus2.azure.neon.tech/neondb?sslmode=require",
-        conn_max_age=600
-    )
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
