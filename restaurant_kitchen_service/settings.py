@@ -31,11 +31,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "8c(e&2uwq_apthw68z#5sdu4zc&#ln&tox%#u
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
 
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+# RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+# if RENDER_EXTERNAL_HOSTNAME:
+#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 AUTH_USER_MODEL = "management.Cook"
 
@@ -97,8 +97,8 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES["default"].update(db_from_env)
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES["default"].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -138,7 +138,7 @@ STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = "staticfiles/"
 
 ASSETS_ROOT = " /static/assets"
 
