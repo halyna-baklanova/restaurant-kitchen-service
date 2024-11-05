@@ -28,14 +28,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY", "8c(e&2uwq_apthw68z#5sdu4zc&#ln&tox%#u-g9%s4e-r5@l*")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
+# DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
+DEBUG = False
 
+ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ["127.0.0.1"]
-
-# RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-# if RENDER_EXTERNAL_HOSTNAME:
-#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 AUTH_USER_MODEL = "management.Cook"
 
