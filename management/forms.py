@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from management.models import Cook, DishType, Dish
+
+from management.models import Cook, Dish
 
 
 class CookCreationForm(UserCreationForm):
@@ -20,7 +21,8 @@ class CookSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={
+        widget=forms.TextInput(
+            attrs={
         "placeholder": "Search by cook"
         }
         )
@@ -32,7 +34,8 @@ class DishTypeSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={
+        widget=forms.TextInput(
+            attrs={
         "placeholder": "Search by dish type"
         }
         )
@@ -45,10 +48,10 @@ class DishCookForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
+
     class Meta:
         model = Dish
         fields = ["cooks"]
-
 
 
 class DishCookSearchForm(forms.Form):
@@ -56,7 +59,8 @@ class DishCookSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={
+        widget=forms.TextInput(
+            attrs={
         "placeholder": "Search by cook"
         }
         )

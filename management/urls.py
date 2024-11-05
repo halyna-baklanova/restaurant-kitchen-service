@@ -24,8 +24,8 @@ urlpatterns = [
     path("", index, name="index"),
     path(
         "cooks/",
-         CookListView.as_view(),
-         name="cook-list"
+        CookListView.as_view(),
+        name="cook-list"
     ),
     path(
         "cooks/<int:pk>",
