@@ -28,17 +28,17 @@ urlpatterns = [
         name="cook-list"
     ),
     path(
-        "cooks/<int:pk>",
+        "cooks/<int:pk>/",
         CookDetailView.as_view(),
         name="cook-detail"
     ),
     path(
-        "cooks/create",
+        "cooks/create/",
         CookCreateView.as_view(),
         name="cook-create"
     ),
     path(
-        "cooks/update/<int:pk>",
+        "cooks/update/<int:pk>/",
         CookUpdateView.as_view(),
         name="cook-update"
     ),
@@ -48,7 +48,7 @@ urlpatterns = [
         name="dish-assign-cooks"
     ),
     path(
-        "cooks/delete/<int:pk>",
+        "cooks/delete/<int:pk>/",
         CookDeleteView.as_view(),
         name="cook-delete"
     ),
@@ -58,22 +58,22 @@ urlpatterns = [
         name="dish-type-list"
     ),
     path(
-        "dish-types/<int:pk>",
+        "dish-types/<int:pk>/",
         DishTypeDetailView.as_view(),
         name="dish-types-detail"
     ),
     path(
-        "dish-types/create",
+        "dish-types/create/",
         DishTypeCreateView.as_view(),
         name="dish-type-create"
     ),
     path(
-        "dish-types/update/<int:pk>",
+        "dish-types/update/<int:pk>/",
         DishTypeUpdateView.as_view(),
         name="dish-type-update"
     ),
     path(
-        "dish-types/delete/<int:pk>",
+        "dish-types/delete/<int:pk>/",
         DishTypeDeleteView.as_view(),
         name="dish-type-delete"
     ),
@@ -83,22 +83,22 @@ urlpatterns = [
         name="dish-list"
     ),
     path(
-        "dishes/<int:pk>",
+        "dishes/<int:pk>/",
         DishDetailView.as_view(),
         name="dish-detail"
     ),
     path(
-        "dishes/create",
+        "dishes/create/",
         DishCreateView.as_view(),
         name="dish-create"
     ),
     path(
-        "dishes/update/<int:pk>",
+        "dishes/update/<int:pk>/",
         DishUpdateView.as_view(),
         name="dish-update"
     ),
     path(
-        "dishes/delete/<int:pk>",
+        "dishes/delete/<int:pk>/",
         DishDeleteView.as_view(),
         name="dish-delete"
     ),
