@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+  {% include "includes/navigation.html" %}
+  <div class="container">
+    <div style="padding-top: 100px;">
+      <h1 class="mb-4">
+        Dish Types:
+        <a href="{% url 'management:dish-type-create' %}" class="btn btn-primary link-to-page float-end">
+          Create
+        </a>
+      </h1>
+      {% include "includes/search_form.html" %}
+      <ul class="list-group">
+        {% for type in dish_types_list %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              {{ type }}
+              {% if type.dishes.all %}
+                <ul class="mt-2">
+                  {% for dish in type.dishes.all %}
+                    <li>
+                      <a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <p class="text-muted">No dishes available for this type.</p>
+              {% endif %}
+            </div>
+            <!-- Edit and Delete Buttons -->
+            <div>
+              <a href="{% url 'management:dish-type-update' type.id %}" class="btn btn-warning btn-sm me-2">Edit</a>
+              <form action="{% url 'management:dish-type-delete' type.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            </div>
+          </li>
+        {% empty %}
+          <li class="list-group-item">
+            <div class="alert alert-warning mb-0">
+              There are no types of dishes in Kitchen Service.
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% block pagination %}
+      {% include "includes/pagination.html" %}
+    {% endblock pagination %}
+  </div>
+{% endblock %}

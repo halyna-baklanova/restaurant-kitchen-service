@@ -1,0 +1,44 @@
+body {
+    margin-top: 20px;
+}
+
+.link-to-page {
+    float: right;
+    margin: 0 2px 0 2px;
+}
+.header-2 .page-header {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding-top: 3rem;
+}
+
+.header-2 h1 {
+  font-size: 3rem;
+}
+
+.header-2 p {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.header-2 .waves {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.header-2 .moving-waves use {
+  animation: wave 20s infinite;
+}
+
+@keyframes wave {
+  from {
+    transform: translate3d(-90px, 0, 0);
+  }
+  to {
+    transform: translate3d(85px, 0, 0);
+  }
+}
